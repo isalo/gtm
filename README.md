@@ -1,5 +1,13 @@
 # Git Time Machine (`gtm`)
 
+[![npm version](https://img.shields.io/npm/v/@isalo/gtm.svg)](https://www.npmjs.com/package/@isalo/gtm)
+[![npm downloads](https://img.shields.io/npm/dm/@isalo/gtm.svg)](https://www.npmjs.com/package/@isalo/gtm)
+[![CI](https://github.com/isalo/gtm/actions/workflows/ci.yml/badge.svg)](https://github.com/isalo/gtm/actions/workflows/ci.yml)
+[![Publish](https://github.com/isalo/gtm/actions/workflows/publish.yml/badge.svg)](https://github.com/isalo/gtm/actions/workflows/publish.yml)
+[![provenance](https://img.shields.io/badge/npm-provenance-blue?logo=npm)](https://www.npmjs.com/package/@isalo/gtm)
+[![license](https://img.shields.io/npm/l/@isalo/gtm.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/@isalo/gtm.svg)](https://nodejs.org)
+
 > Analyze Git history to understand **why** code is the way it is.
 
 `git log` and `git blame` show raw data but rarely the *story*. Git Time Machine
