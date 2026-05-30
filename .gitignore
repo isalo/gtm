@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.gtm-cache/
+coverage/
+
+# Generated HTML reports
+gtm-report.html
+*.gtm-report.html

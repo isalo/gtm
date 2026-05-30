@@ -1,0 +1,115 @@
+# Git Time Machine (`gtm`)
+
+> Analyze Git history to understand **why** code is the way it is.
+
+`git log` and `git blame` show raw data but rarely the *story*. Git Time Machine
+summarizes repository history, finds risky files, explains a file's evolution,
+and reveals who owns which parts of the codebase — perfect for onboarding into
+legacy projects.
+
+## Install / Run
+
+No install needed — run via `npx`:
+
+```bash
+npx @isalo/gtm summary
+```
+
+Or install globally:
+
+```bash
+npm install -g @isalo/gtm
+gtm summary
+```
+
+## Commands
+
+| Command | Status | Description |
+| --- | --- | --- |
+| `gtm summary` | ✅ available | High-level overview: commits, authors, age, top contributors, recent commits |
+| `gtm hotspots` | ✅ available | List risky, frequently-changed files (ranked by churn + author spread) |
+| `gtm explain <path>` | ✅ available | Summarize the history and ownership of a path |
+| `gtm timeline <path>` | ✅ available | Chronological change timeline for a path |
+| `gtm author <name>` | ✅ available | Contribution profile for an author (matched by name or email) |
+| `gtm report` | ✅ available | Generate a self-contained HTML dashboard (summary + authors + hotspots) |
+
+`gtm hotspots` also accepts `-t, --top <count>` (default 20) to control how many
+files are listed. `gtm report` accepts `-o, --output <file>` (default
+`gtm-report.html`) and `-t, --top <count>` (hotspots included, default 15).
+
+## Global options
+
+Every command supports:
+
+| Flag | Description |
+| --- | --- |
+| `--json` | Output machine-readable JSON (for scripts / CI / future AI) |
+| `-r, --repo <path>` | Target repository (default: current directory) |
+| `-n, --max <count>` | Limit analysis to the last N commits |
+| `--since <date>` | Only include commits since a git-parseable date |
+
+### Examples
+
+```bash
+gtm summary                       # overview of the current repo
+gtm summary --repo ../other-repo  # overview of another repo
+gtm summary --json                # JSON output for tooling
+gtm summary --since "3 months ago"
+
+gtm hotspots --top 10             # 10 riskiest files
+gtm explain src/app/index.ts      # history + ownership of a file
+gtm timeline src/app/index.ts     # chronological change timeline
+gtm author "Jane"                 # contribution profile (name or email)
+gtm report -o report.html         # self-contained HTML dashboard
+gtm report --json                 # combined dataset as JSON (for CI/AI)
+```
+
+## Architecture
+
+Clean, layered, and dependency-directed (`cli → analyzers → git`):
+
+```
+src/
+  index.ts            # programmatic library entry
+  cli/                # commander wiring + thin command adapters
+    main.ts           # bin entry, single top-level error handler
+    program.ts        # global options + command registration
+    shared.ts         # option parsing, spinner, output dispatch
+    commands/         # one file per command
+  core/
+    git/              # the only layer that talks to `git` (execa)
+    analyzers/        # pure business logic, unit-testable, no I/O
+    models/           # typed domain models (the stable contract)
+  output/             # renderers (text/json today; html/ai later)
+  utils/              # typed errors, logging
+```
+
+### Design principles
+
+- **Strict TypeScript** (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`).
+- **Separation of concerns**: analyzers never print; renderers never call git.
+- **Graceful errors**: typed `GtmError` hierarchy → friendly messages + exit codes.
+- **Cross-platform**: pure `git` CLI via `execa`, locale-pinned output.
+- **Extensible**: `--json` everywhere; the same core powers future HTML reports,
+  AI summaries, a local cache, and GitHub Actions.
+
+## Roadmap
+
+- [x] `summary`, `hotspots`, `explain`, `timeline`, `author` commands
+- [x] HTML report renderer (`gtm report`)
+- [ ] AI-assisted summaries (opt-in, no API required for core features)
+- [ ] Local SQLite cache for large repositories
+- [ ] GitHub Actions integration
+
+## Development
+
+```bash
+npm install
+npm run build      # compile to dist/
+npm run typecheck  # type-only check
+node dist/cli/main.js summary
+```
+
+## License
+
+MIT
