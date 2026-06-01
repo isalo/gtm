@@ -12,7 +12,11 @@
 export * from './core/models/types.js';
 export { GitClient } from './core/git/gitClient.js';
 export type { GitLogOptions, NumstatCommit, NumstatFile } from './core/git/gitClient.js';
-export { analyzeSummary, aggregateAuthors, computeAgeDays } from './core/analyzers/summaryAnalyzer.js';
+export {
+  analyzeSummary,
+  aggregateAuthors,
+  computeAgeDays,
+} from './core/analyzers/summaryAnalyzer.js';
 export { analyzeHotspots } from './core/analyzers/hotspotsAnalyzer.js';
 export { analyzeExplain, ownership } from './core/analyzers/explainAnalyzer.js';
 export { analyzeTimeline } from './core/analyzers/timelineAnalyzer.js';

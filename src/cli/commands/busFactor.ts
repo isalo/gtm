@@ -34,7 +34,9 @@ export function registerBusFactorCommand(program: Command): void {
     if (options.threshold !== undefined) {
       const pct = Number.parseInt(options.threshold, 10);
       if (Number.isNaN(pct) || pct <= 0 || pct > 100) {
-        throw new InvalidInputError(`--threshold must be between 1 and 100, got '${options.threshold}'.`);
+        throw new InvalidInputError(
+          `--threshold must be between 1 and 100, got '${options.threshold}'.`,
+        );
       }
       threshold = pct / 100;
     }

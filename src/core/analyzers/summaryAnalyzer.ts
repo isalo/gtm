@@ -35,7 +35,10 @@ export async function analyzeSummary(options: AnalysisOptions): Promise<RepoSumm
   ]);
 
   const authors = aggregateAuthors(commits);
-  const dates = commits.map((c) => c.date).filter(Boolean).sort();
+  const dates = commits
+    .map((c) => c.date)
+    .filter(Boolean)
+    .sort();
   const firstCommitDate = dates[0] ?? null;
   const lastCommitDate = dates[dates.length - 1] ?? null;
 
@@ -76,9 +79,7 @@ export function aggregateAuthors(commits: readonly CommitInfo[]): AuthorContribu
     }
   }
 
-  return [...byKey.values()]
-    .sort((a, b) => b.commits - a.commits)
-    .map((entry) => ({ ...entry }));
+  return [...byKey.values()].sort((a, b) => b.commits - a.commits).map((entry) => ({ ...entry }));
 }
 
 /** Inclusive repository age in whole days between first and last commit. */

@@ -53,7 +53,14 @@
     "start": "node dist/cli/main.js",
     "clean": "rimraf dist",
     "prepublishOnly": "npm run clean && npm run build",
-    "typecheck": "tsc --noEmit -p tsconfig.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "chalk": "^5.3.0",
@@ -62,8 +69,15 @@
     "ora": "^8.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
     "@types/node": "^20.14.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
     "rimraf": "^5.0.7",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.5"
   }
 }

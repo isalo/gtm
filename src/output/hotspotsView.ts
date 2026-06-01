@@ -27,7 +27,9 @@ export function renderHotspots(report: HotspotsReport, format: OutputFormat): st
 
   lines.push('');
   lines.push(
-    chalk.dim(`  ${'RISK'.padEnd(6)} ${'CHANGES'.padStart(7)} ${'AUTHORS'.padStart(7)}  LAST       FILE`),
+    chalk.dim(
+      `  ${'RISK'.padEnd(6)} ${'CHANGES'.padStart(7)} ${'AUTHORS'.padStart(7)}  LAST       FILE`,
+    ),
   );
   for (const file of report.hotspots) {
     const color = riskColor(file.riskScore);

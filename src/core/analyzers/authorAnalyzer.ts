@@ -65,7 +65,10 @@ function distinctIdentities(commits: readonly CommitInfo[]): Identity[] {
 
 function buildContribution(
   commits: readonly CommitInfo[],
-  numstat: readonly { hash: string; files: readonly { insertions: number | null; deletions: number | null }[] }[],
+  numstat: readonly {
+    hash: string;
+    files: readonly { insertions: number | null; deletions: number | null }[];
+  }[],
 ): AuthorContribution | null {
   if (commits.length === 0) return null;
 
@@ -78,7 +81,10 @@ function buildContribution(
     }
   }
 
-  const dates = commits.map((c) => c.date).filter(Boolean).sort();
+  const dates = commits
+    .map((c) => c.date)
+    .filter(Boolean)
+    .sort();
   const first = commits[0]!.author;
 
   return {

@@ -10,7 +10,7 @@
 
 > Analyze Git history to understand **why** code is the way it is.
 
-`git log` and `git blame` show raw data but rarely the *story*. Git Time Machine
+`git log` and `git blame` show raw data but rarely the _story_. Git Time Machine
 summarizes repository history, finds risky files, explains a file's evolution,
 and reveals who owns which parts of the codebase — perfect for onboarding into
 legacy projects.
@@ -32,17 +32,17 @@ gtm summary
 
 ## Commands
 
-| Command | Status | Description |
-| --- | --- | --- |
-| `gtm summary` | ✅ available | High-level overview: commits, authors, age, top contributors, recent commits |
-| `gtm hotspots` | ✅ available | List risky, frequently-changed files (ranked by churn + author spread) |
-| `gtm explain <path>` | ✅ available | Summarize the history and ownership of a path |
-| `gtm timeline <path>` | ✅ available | Chronological change timeline for a path |
-| `gtm author <name>` | ✅ available | Contribution profile for an author (matched by name or email) |
-| `gtm coupling` | ✅ available | Files that frequently change together (temporal coupling) |
-| `gtm bus-factor` | ✅ available | Files dominated by a single author (knowledge silos) |
-| `gtm activity` | ✅ available | Commit cadence: weekday/hour heatmap + monthly trend |
-| `gtm report` | ✅ available | Self-contained HTML dashboard (all of the above combined) |
+| Command               | Status       | Description                                                                  |
+| --------------------- | ------------ | ---------------------------------------------------------------------------- |
+| `gtm summary`         | ✅ available | High-level overview: commits, authors, age, top contributors, recent commits |
+| `gtm hotspots`        | ✅ available | List risky, frequently-changed files (ranked by churn + author spread)       |
+| `gtm explain <path>`  | ✅ available | Summarize the history and ownership of a path                                |
+| `gtm timeline <path>` | ✅ available | Chronological change timeline for a path                                     |
+| `gtm author <name>`   | ✅ available | Contribution profile for an author (matched by name or email)                |
+| `gtm coupling`        | ✅ available | Files that frequently change together (temporal coupling)                    |
+| `gtm bus-factor`      | ✅ available | Files dominated by a single author (knowledge silos)                         |
+| `gtm activity`        | ✅ available | Commit cadence: weekday/hour heatmap + monthly trend                         |
+| `gtm report`          | ✅ available | Self-contained HTML dashboard (all of the above combined)                    |
 
 Per-command extras:
 
@@ -55,12 +55,12 @@ Per-command extras:
 
 Every command supports:
 
-| Flag | Description |
-| --- | --- |
-| `--json` | Output machine-readable JSON (for scripts / CI / future AI) |
-| `-r, --repo <path>` | Target repository (default: current directory) |
-| `-n, --max <count>` | Limit analysis to the last N commits |
-| `--since <date>` | Only include commits since a git-parseable date |
+| Flag                | Description                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| `--json`            | Output machine-readable JSON (for scripts / CI / future AI) |
+| `-r, --repo <path>` | Target repository (default: current directory)              |
+| `-n, --max <count>` | Limit analysis to the last N commits                        |
+| `--since <date>`    | Only include commits since a git-parseable date             |
 
 ### Examples
 
@@ -123,10 +123,16 @@ src/
 
 ```bash
 npm install
-npm run build      # compile to dist/
-npm run typecheck  # type-only check
+npm run build        # compile to dist/
+npm run typecheck    # type-only check
+npm run lint         # eslint
+npm run format       # prettier --write
+npm test             # run the vitest suite
 node dist/cli/main.js summary
 ```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for conventions and the full check
+suite, and [CHANGELOG.md](./CHANGELOG.md) for release notes.
 
 ## Author
 

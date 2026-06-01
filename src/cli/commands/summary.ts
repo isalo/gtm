@@ -10,9 +10,7 @@ import { resolveCommon, runCommand, withCommonOptions, type CommonCliOptions } f
 
 export function registerSummaryCommand(program: Command): void {
   withCommonOptions(
-    program
-      .command('summary')
-      .description('Show a high-level overview of the repository history'),
+    program.command('summary').description('Show a high-level overview of the repository history'),
   ).action(async (options: CommonCliOptions) => {
     const { format, analysis } = resolveCommon(options);
     await runCommand({

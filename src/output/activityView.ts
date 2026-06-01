@@ -36,9 +36,9 @@ export function renderActivity(report: ActivityReport, format: OutputFormat): st
   lines.push('');
   lines.push(chalk.dim('      0   3   6   9   12  15  18  21'));
   for (let d = 0; d < 7; d++) {
-    const cells = report.byWeekdayHour[d]!
-      .map((c) => SHADES[level(c, maxCell, SHADES.length)]!)
-      .join('');
+    const cells = report.byWeekdayHour[d]!.map(
+      (c) => SHADES[level(c, maxCell, SHADES.length)]!,
+    ).join('');
     lines.push(`  ${chalk.dim(WEEKDAYS[d]!)} ${cells}`);
   }
 

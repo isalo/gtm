@@ -19,7 +19,12 @@ export function renderExplain(report: ExplainReport, format: OutputFormat): stri
 
   lines.push(field('Commits', String(report.totalCommits)));
   lines.push(field('Created', formatDate(report.createdAt)));
-  lines.push(field('Last change', `${formatDate(report.lastModified)} (${relativeTime(report.lastModified)})`));
+  lines.push(
+    field(
+      'Last change',
+      `${formatDate(report.lastModified)} (${relativeTime(report.lastModified)})`,
+    ),
+  );
 
   lines.push('');
   lines.push(heading('Ownership'));

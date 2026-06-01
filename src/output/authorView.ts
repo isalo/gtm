@@ -24,7 +24,10 @@ export function renderAuthor(report: AuthorReport, format: OutputFormat): string
   lines.push(field('Commits', String(c.commits)));
   lines.push(field('Lines', `${chalk.green(`+${c.insertions}`)} ${chalk.red(`-${c.deletions}`)}`));
   lines.push(
-    field('Active', `${formatDate(c.firstCommit)} -> ${formatDate(c.lastCommit)} (${relativeTime(c.lastCommit)})`),
+    field(
+      'Active',
+      `${formatDate(c.firstCommit)} -> ${formatDate(c.lastCommit)} (${relativeTime(c.lastCommit)})`,
+    ),
   );
 
   if (report.topFiles.length > 0) {

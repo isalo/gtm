@@ -27,7 +27,10 @@ export class NotAGitRepoError extends GtmError {
 /** Raised when the `git` executable cannot be found on the system. */
 export class GitNotFoundError extends GtmError {
   constructor() {
-    super('Could not find the "git" executable. Please install git and ensure it is on your PATH.', 127);
+    super(
+      'Could not find the "git" executable. Please install git and ensure it is on your PATH.',
+      127,
+    );
   }
 }
 

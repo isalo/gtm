@@ -23,7 +23,9 @@ export function renderCoupling(report: CouplingReport, format: OutputFormat): st
 
   const lines: string[] = [];
   lines.push(heading('Change Coupling'));
-  lines.push(chalk.dim(`  Analyzed ${report.analyzedCommits} commits · min shared ${report.minShared}`));
+  lines.push(
+    chalk.dim(`  Analyzed ${report.analyzedCommits} commits · min shared ${report.minShared}`),
+  );
 
   if (report.pairs.length === 0) {
     lines.push('');
