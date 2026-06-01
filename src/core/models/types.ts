@@ -127,6 +127,66 @@ export interface AuthorReport {
   readonly recentCommits: readonly CommitInfo[];
 }
 
+/** A pair of files that frequently change together (temporal coupling). */
+export interface CouplingPair {
+  readonly fileA: string;
+  readonly fileB: string;
+  /** Number of commits in which both files changed. */
+  readonly sharedCommits: number;
+  readonly commitsA: number;
+  readonly commitsB: number;
+  /** sharedCommits / min(commitsA, commitsB), in 0..1. */
+  readonly coupling: number;
+}
+
+/** Result of `gtm coupling`. */
+export interface CouplingReport {
+  readonly repoPath: string;
+  readonly analyzedCommits: number;
+  readonly minShared: number;
+  readonly pairs: readonly CouplingPair[];
+}
+
+/** A file whose history is dominated by a single author. */
+export interface BusFactorFile {
+  readonly path: string;
+  readonly commits: number;
+  readonly authors: number;
+  readonly primaryAuthor: Identity;
+  /** primaryAuthor commits / total file commits, in 0..1. */
+  readonly primaryShare: number;
+}
+
+/** Result of `gtm bus-factor`. */
+export interface BusFactorReport {
+  readonly repoPath: string;
+  readonly analyzedCommits: number;
+  /** Dominance threshold (0..1) above which a file is considered siloed. */
+  readonly threshold: number;
+  readonly totalFiles: number;
+  readonly siloedFiles: number;
+  readonly files: readonly BusFactorFile[];
+}
+
+/** Commit count for a single calendar month (YYYY-MM). */
+export interface MonthCount {
+  readonly month: string;
+  readonly count: number;
+}
+
+/** Result of `gtm activity`. */
+export interface ActivityReport {
+  readonly repoPath: string;
+  readonly totalCommits: number;
+  /** Counts indexed [weekday 0=Sun..6=Sat][hour 0..23], in commit-local time. */
+  readonly byWeekdayHour: readonly (readonly number[])[];
+  readonly byWeekday: readonly number[];
+  readonly byHour: readonly number[];
+  readonly byMonth: readonly MonthCount[];
+  readonly busiestWeekday: number;
+  readonly busiestHour: number;
+}
+
 /**
  * Combined dataset for `gtm report`, aggregating multiple analyses into a
  * single shareable document (consumed by the HTML renderer).
@@ -136,6 +196,9 @@ export interface ReportData {
   readonly generatedAt: string;
   readonly summary: RepoSummary;
   readonly hotspots: HotspotsReport;
+  readonly coupling: CouplingReport;
+  readonly busFactor: BusFactorReport;
+  readonly activity: ActivityReport;
 }
 
 /** Options shared by every analyzer, derived from CLI flags. */

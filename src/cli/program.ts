@@ -11,6 +11,9 @@ import { registerExplainCommand } from './commands/explain.js';
 import { registerTimelineCommand } from './commands/timeline.js';
 import { registerAuthorCommand } from './commands/author.js';
 import { registerReportCommand } from './commands/report.js';
+import { registerCouplingCommand } from './commands/coupling.js';
+import { registerBusFactorCommand } from './commands/busFactor.js';
+import { registerActivityCommand } from './commands/activity.js';
 
 export const VERSION = '0.1.0';
 
@@ -29,6 +32,9 @@ export function buildProgram(): Command {
   registerExplainCommand(program);
   registerTimelineCommand(program);
   registerAuthorCommand(program);
+  registerCouplingCommand(program);
+  registerBusFactorCommand(program);
+  registerActivityCommand(program);
   registerReportCommand(program);
 
   return program;

@@ -39,11 +39,17 @@ gtm summary
 | `gtm explain <path>` | ✅ available | Summarize the history and ownership of a path |
 | `gtm timeline <path>` | ✅ available | Chronological change timeline for a path |
 | `gtm author <name>` | ✅ available | Contribution profile for an author (matched by name or email) |
-| `gtm report` | ✅ available | Generate a self-contained HTML dashboard (summary + authors + hotspots) |
+| `gtm coupling` | ✅ available | Files that frequently change together (temporal coupling) |
+| `gtm bus-factor` | ✅ available | Files dominated by a single author (knowledge silos) |
+| `gtm activity` | ✅ available | Commit cadence: weekday/hour heatmap + monthly trend |
+| `gtm report` | ✅ available | Self-contained HTML dashboard (all of the above combined) |
 
-`gtm hotspots` also accepts `-t, --top <count>` (default 20) to control how many
-files are listed. `gtm report` accepts `-o, --output <file>` (default
-`gtm-report.html`) and `-t, --top <count>` (hotspots included, default 15).
+Per-command extras:
+
+- `gtm hotspots` — `-t, --top <count>` (default 20)
+- `gtm coupling` — `-t, --top <count>` (default 20), `-m, --min-shared <count>` (default 3)
+- `gtm bus-factor` — `-t, --top <count>` (default 20), `--threshold <0-100>` (default 80)
+- `gtm report` — `-o, --output <file>` (default `gtm-report.html`), `-t, --top <count>`
 
 ## Global options
 
@@ -68,6 +74,9 @@ gtm hotspots --top 10             # 10 riskiest files
 gtm explain src/app/index.ts      # history + ownership of a file
 gtm timeline src/app/index.ts     # chronological change timeline
 gtm author "Jane"                 # contribution profile (name or email)
+gtm coupling --top 15             # files that change together
+gtm bus-factor --threshold 90     # files >=90% owned by one author
+gtm activity                      # commit cadence heatmap + trend
 gtm report -o report.html         # self-contained HTML dashboard
 gtm report --json                 # combined dataset as JSON (for CI/AI)
 ```
@@ -104,6 +113,7 @@ src/
 ## Roadmap
 
 - [x] `summary`, `hotspots`, `explain`, `timeline`, `author` commands
+- [x] `coupling`, `bus-factor`, `activity` commands
 - [x] HTML report renderer (`gtm report`)
 - [ ] AI-assisted summaries (opt-in, no API required for core features)
 - [ ] Local SQLite cache for large repositories
