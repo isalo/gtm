@@ -1,6 +1,6 @@
 {
   "name": "@isalo/gtm",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Analyze Git history to understand why code is the way it is: summaries, hotspots, file history, ownership.",
   "keywords": [
     "git",
