@@ -6,6 +6,9 @@
  * consistent, graceful error handling: typed {@link GtmError}s map to friendly
  * messages and specific exit codes; anything else is reported without leaking
  * a raw stack trace to end users.
+ *
+ * @author Ivan Salo <https://github.com/isalo>
+ * @license MIT
  */
 import process from 'node:process';
 import { buildProgram } from './program.js';

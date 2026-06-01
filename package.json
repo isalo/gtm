@@ -12,7 +12,10 @@
     "legacy"
   ],
   "license": "MIT",
-  "author": "Ivan Salo",
+  "author": {
+    "name": "Ivan Salo",
+    "url": "https://github.com/isalo"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/isalo/gtm.git"

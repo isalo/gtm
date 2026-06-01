@@ -4,6 +4,10 @@
  * Programmatic consumers (e.g. a future HTML reporter, GitHub Action, or AI
  * summarizer) can import analyzers and types from here without touching the
  * CLI. The CLI is just one consumer of this same core.
+ *
+ * @packageDocumentation
+ * @author Ivan Salo <https://github.com/isalo>
+ * @license MIT
  */
 export * from './core/models/types.js';
 export { GitClient } from './core/git/gitClient.js';

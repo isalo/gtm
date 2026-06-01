@@ -128,6 +128,10 @@ npm run typecheck  # type-only check
 node dist/cli/main.js summary
 ```
 
+## Author
+
+Created and maintained by **Ivan Salo** ([@isalo](https://github.com/isalo)).
+
 ## License
 
-MIT
+[MIT](./LICENSE) © Ivan Salo
